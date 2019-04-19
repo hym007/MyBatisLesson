@@ -13,7 +13,7 @@ public class IfTest {
         CustomerMapper customerMapper= sqlSession.getMapper(CustomerMapper.class);
 
         String keyword="曹";
-        String jobs="程序员";
+        String jobs="程序猿";
         int id =10;
         List<Customer> byLikeName = customerMapper.findAllByLikeName2(keyword,jobs,id);
 

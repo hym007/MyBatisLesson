@@ -34,11 +34,11 @@ public class ForeachTest {
         MybatisUtill.closeSqlSession(sqlSession);
     }
 
-
     /**
      * 批量修改
      */
     @Test
+
     public void updateCustomer(){
         SqlSession sqlSession = MybatisUtill.getSqlSession(true);
         CustomerMapper customerMapper= sqlSession.getMapper(CustomerMapper.class);
@@ -57,8 +57,6 @@ public class ForeachTest {
 
         MybatisUtill.closeSqlSession(sqlSession);
     }
-
-
     /**
      * 批量删除
      */

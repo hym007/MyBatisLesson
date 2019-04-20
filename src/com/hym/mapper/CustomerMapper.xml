@@ -35,4 +35,49 @@
             </choose>
         </where>
     </select>
+
+    <!--批量查操作-->
+    <select id="findCustomerByIds" parameterType="list" resultType="com.hym.po.Customer">
+                select * from t_customer where id in
+        <foreach item="id" index="index" collection="list"
+                open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!--批量增操作-->
+    <insert id="insertCustomer" parameterType="java.util.List">
+            insert into t_customer(id,username, jobs, phone)
+            values 
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=INTEGER},#{item.username,jdbcType=VARCHAR},#{item.jobs,jdbcType=VARCHAR},
+            #{item.phone,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+
+    <!--批量修改-->
+    <update id="updateCustomer" parameterType="java.util.List">
+            update t_customer set jobs=
+        <foreach collection="list" item="item" index="index" separator=" " open="case" close="end">
+            when id=#{item.id} then #{item.jobs}
+        </foreach>
+
+        where id in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+              #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </update>
+
+
+    <!--批量删除-->
+    <delete id="delCustomer" parameterType="java.lang.String">
+              delete from t_customer
+              where id in 
+        <foreach collection="array" item="outputId" open="(" separator="," close=")">
+            #{outputId}
+        </foreach>
+    </delete>
+
+
 </mapper>

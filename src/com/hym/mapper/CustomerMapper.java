@@ -15,4 +15,17 @@ public interface CustomerMapper {
     List<Customer> findAllByLikeName(@Param("keyword") String keyword);
 
     List<Customer> findAllByLikeName2(@Param("keyword") String keyword,@Param("jobs") String jobs,@Param("id") int id);
+
+    //批量查操作
+    List<Customer> findCustomerByIds(List<Customer> list);
+
+    //批量增操作
+    int insertCustomer(List<Customer> list);
+
+    //批量修改
+    int updateCustomer(List<Customer> list);
+
+    //批量删除
+    int delCustomer(String[] arry);
+
 }
